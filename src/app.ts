@@ -94,6 +94,11 @@ class ProjectState{
     this.updateListeners();
   }
 
+  removeProject(projectId: string){
+    this.projects = this.projects.filter((p: ProjectDetail) => p.id !== projectId);
+    this.updateListeners();
+  }
+
   private updateListeners(){
     console.log("update listeners called");
     for(const listener of this.listeners){
@@ -356,8 +361,16 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> implements 
     console.log("dragEnd Handler is called")
   }
 
+  @autobinder
+  deleteProjectItem(_: any){
+    projectState.removeProject(this.project.id);
+  }
+
   configure(){
     this.element.draggable = true;
+    const button = this.element.querySelector('.project-button')! as HTMLButtonElement;
+
+    button.addEventListener('click', this.deleteProjectItem)
 
     this.element.addEventListener('dragstart', this.dragStartHandler);
     this.element.addEventListener('dragend', this.dragEndHandler);
