@@ -15,5 +15,5 @@ A seperate interfaces are declared which the draggable(source) and droppable(tar
 5. Using singleton design pattern to store state of the project. we can access this state from different places of code. any manipulation done from any part of code will affect on this singleton pattern.
 
 
-and pretty many more things for future projects.
+and pretty many more things useful for future projects.
 
